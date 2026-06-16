@@ -1,23 +1,24 @@
-const { orders } = require("../models/orders.models");
-let nextOrderId = 1;
+const orderModel = require("../models/orders.models");
 
-const getAllOrders = () => {
-  return orders;
+const getAllOrders = async () => {
+  return await orderModel.getAllOrders();
 };
 
-const createOrder = (data) => {
-  const order = {
-    id: nextOrderId++,
-    items: data.items || [],
-    total: data.total || 0,
-    status: "pending",
-    createdAt: new Date().toISOString(),
-  };
-  orders.push(order);
-  return order;
+const createOrder = async (data) => {
+  return await orderModel.createOrder(data);
+};
+
+const getOrderById = async (id) => {
+  return await orderModel.getOrderById(id);
+};
+
+const deleteOrder = async (id) => {
+  return await orderModel.deleteOrder(id);
 };
 
 module.exports = {
   getAllOrders,
   createOrder,
+  getOrderById,
+  deleteOrder
 };

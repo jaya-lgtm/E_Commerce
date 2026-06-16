@@ -10,7 +10,19 @@ const createOrder = (req, res) => {
   res.status(201).json(order);
 };
 
+const getOrderById = async (req, res) => {
+  const order = await orderService.getOrderById(req.params.id);
+  res.json(order);
+};
+
+const deleteOrder = async (req, res) => {
+  const order = await orderService.deleteOrder(req.params.id);
+  res.json(order);
+};
+
 module.exports = {
   getAllOrders,
   createOrder,
+  getOrderById,
+  deleteOrder
 };

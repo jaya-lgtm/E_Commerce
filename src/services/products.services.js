@@ -1,27 +1,25 @@
-const { products } = require("../models/products.models");
-let nextProductId = 1;
+const productModel = require("../models/products.models");
 
-const getAllProducts = () => {
-  return products;
+const getAllProducts = async () => {
+  return await productModel.getAllProducts();
 };
 
-const getProductById = (id) => {
-  return products.find((product) => product.id === Number(id));
+const getProductById = async (id) => {
+  return await productModel.getProductById(id);
 };
 
-const createProduct = (data) => {
-  const product = {
-    id: nextProductId++,
-    name: data.name || "Untitled product",
-    price: data.price || 0,
-    description: data.description || "",
-  };
-  products.push(product);
-  return product;
+const createProduct = async (data) => {
+  return await productModel.createProduct(data);
+};
+
+const deleteProduct = async (id) => {
+  return await productModel.deleteProduct(id);
 };
 
 module.exports = {
   getAllProducts,
   getProductById,
   createProduct,
+  deleteProduct,
 };
+
