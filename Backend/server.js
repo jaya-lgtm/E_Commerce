@@ -5,8 +5,9 @@ const { connectDB } = require("./src/config/db");
 const startServer = async () => {
   try {
     await connectDB();
-    app.listen(process.env.PORT || 3000, () => {
-      console.log(`Server is running on PORT: ${process.env.PORT || 3000}`);
+    const port = process.env.PORT || 3000;
+    app.listen(port, () => {
+      console.log(`Server is running on http://localhost:${port}`);
     });
   } catch (error) {
     console.log(error);

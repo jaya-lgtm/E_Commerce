@@ -1,7 +1,13 @@
 const express = require("express");
+const cors = require("cors");
 const app = express();
 
+app.use(cors());
 app.use(express.json());
+
+app.get("/", (req, res) => {
+  res.send("E-Commerce backend is running. Use /users, /products, or /orders.");
+});
 
 const productsRouter = require("./routes/products.routes");
 const ordersRouter = require("./routes/orders.routes");
